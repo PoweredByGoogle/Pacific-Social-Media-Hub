@@ -1,98 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Pacific Connect • Exclusive Private Social</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #121212;
+            --charcoal: #0f0f0f;
+            --text: #f0f0f0;
+            --text-muted: #b0b0b0;
+            --accent-start: #ff4b2b;
+            --accent-end: #ff416c;
+            --card: #1a1a1a;
+            --border: rgba(255,255,255,0.08);
+            --success: #34d399;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 428px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .status-bar {
+            height: 44px;
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero {
+            padding: 64px 28px 100px;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e1e1e, var(--bg));
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -1.5px;
+        }
+
+        h1 { font-size: 3.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 16px; }
+
+        .hero p { font-size: 1.25rem; max-width: 340px; margin: 0 auto 40px; color: var(--text-muted); }
+
+        .live-counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            margin-bottom: 56px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--success);
+        }
+
+        .pulse-dot {
+            width: 10px; height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 16px rgba(52,211,153,0.7);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse { 0%,100% { transform:scale(1); opacity:0.8; } 50% { transform:scale(1.35); opacity:0.5; } }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: white;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(255,75,43,0.35), 0 0 40px rgba(255,65,108,0.4);
+            text-decoration: none;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            animation: neon-glow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon-glow {
+            from { box-shadow: 0 12px 32px rgba(255,75,43,0.35), 0 0 20px rgba(255,65,108,0.3); }
+            to   { box-shadow: 0 20px 60px rgba(255,75,43,0.6),  0 0 60px rgba(255,65,108,0.7); }
+        }
+
+        .cta-button:hover { transform: translateY(-3px); }
+
+        .trust-text { margin-top:24px; font-size:0.9rem; color:var(--text-muted); }
+
+        .features {
+            padding: 80px 28px;
+            background: var(--charcoal);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        @media (min-width: 500px) {
+            .feature-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,75,43,0.3);
+        }
+
+        .feature-icon { font-size: 3.5rem; margin-bottom: 16px; }
+
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Sticky floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 360px;
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .floating-cta.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: #1e1e1e;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 380px;
+            padding: 32px 28px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-step { display: none; }
+
+        .modal-step.active { display: block; }
+
+        .modal-title { font-size: 1.6rem; margin-bottom: 24px; }
+
+        .modal-btn {
+            margin-top: 24px;
+            padding: 16px 32px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 12px;
+        }
+
+        .modal-progress {
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .age-disclaimer {
+            padding: 60px 28px 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="status-bar">
-        Pacific Connect • Private Fiji Network
-    </div>
+    <div class="status-bar">Pacific Connect • Private Fiji Network</div>
 
     <header class="hero">
         <div class="logo">Pacific Connect</div>
         <h1>Exclusive Private<br>Social Discovery</h1>
         <p>in Fiji & the Pacific Islands</p>
-        
+
         <div class="live-counter">
             <span class="pulse-dot"></span>
-            <span id="live-count">1,400+</span> members online now
+            <span id="liveCount">1,412</span> members online now
         </div>
-        
-        <a href="#early-access" class="cta-button">
-            Join the Exclusive Network
-        </a>
-        
-        <p class="trust-text">
-            100% Private • Verified Members Only
-        </p>
+
+        <button class="cta-button" id="enterBtn">Join the Exclusive Network</button>
+
+        <p class="trust-text">100% Private • Verified Members Only</p>
     </header>
 
     <section class="features">
         <div class="section-title">Why Pacific Connect</div>
-        
+
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3>Absolute Privacy</h3>
-                <p>End-to-end encryption with auto-disappearing messages. Your conversations stay yours.</p>
+                <p>End-to-end encryption • messages disappear automatically</p>
             </div>
-            
             <div class="feature-card">
                 <div class="feature-icon">🌴</div>
-                <h3>Authentic Local Connections</h3>
-                <p>Discover real people across Suva, Nadi, outer islands — location-based and community-verified.</p>
+                <h3>Local Connections</h3>
+                <p>Real people from Suva, Nadi, outer islands & beyond</p>
             </div>
-            
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>Instant & Reliable Chat</h3>
-                <p>Voice notes, video, live sharing — optimized for island networks, no delays.</p>
+                <h3>Instant Chat</h3>
+                <p>Voice, video & location sharing — optimized for island networks</p>
             </div>
         </div>
     </section>
 
-    <div class="bottom-section" id="early-access">
-        <div class="form-container">
-            <h3>Request Early Access</h3>
-            <p>Limited spots for founding members — be among the first in Fiji & the islands.</p>
-            
-            <!-- Replace YOUR_ACCESS_KEY_HERE with your real Web3Forms / Formspree / etc. key -->
-            <form action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                <input type="hidden" name="subject" value="Pacific Connect Early Access Request">
-                
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
-                
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                
-                <label for="phone">Phone / WhatsApp (optional)</label>
-                <input type="tel" id="phone" name="phone" placeholder="+679 ...">
-                
-                <button type="submit" class="cta-button">
-                    Submit Request
-                </button>
-            </form>
-            
-            <p class="form-note">
-                We review and respond within 24 hours
-            </p>
+    <footer class="age-disclaimer">
+        Must be 18+. Pacific Connect is a private adult social platform for Fiji and Pacific Islands residents.<br>
+        All members are verified. Privacy protected with strong encryption.
+    </footer>
+
+    <!-- Floating CTA (appears on scroll) -->
+    <div class="floating-cta" id="floatingCta">
+        <button class="cta-button" id="floatingEnterBtn">Join Now – Members Online</button>
+    </div>
+
+    <!-- Modal / Quiz -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+
+            <!-- Step 1 -->
+            <div class="modal-step active" id="step1">
+                <h2 class="modal-title">Are you 18 or older?</h2>
+                <p style="margin-bottom:32px; color:var(--text-muted);">You must be at least 18 to access Pacific Connect.</p>
+                <button class="modal-btn primary" onclick="goToStep(2)">Yes, I am 18+</button>
+                <button class="modal-btn secondary" onclick="closeModal()">No</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="modal-step" id="step2">
+                <h2 class="modal-title">Where are you connecting from?</h2>
+                <p style="margin-bottom:32px; color:var(--text-muted);">We focus on Fiji and Pacific Islands communities.</p>
+                <button class="modal-btn primary" onclick="goToStep(3)">Fiji / Pacific Islands</button>
+                <button class="modal-btn secondary" onclick="closeModal()">Somewhere else</button>
+                <div class="modal-progress">Step 2 of 3</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="modal-step" id="step3">
+                <h2 class="modal-title">Do you agree to our rules?</h2>
+                <ul style="text-align:left; margin:0 auto 28px; max-width:320px; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                    <li>Respect all members</li>
+                    <li>No spam or solicitation</li>
+                    <li>Keep conversations private</li>
+                    <li>18+ only – verified profiles</li>
+                </ul>
+                <button class="modal-btn primary" onclick="completeQuiz()">I Agree – Enter</button>
+                <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+                <div class="modal-progress">Step 3 of 3</div>
+            </div>
+
         </div>
     </div>
 
-    <footer class="age-disclaimer">
-        Must be 18+. Pacific Connect is an exclusive, private social platform for adults in Fiji and the Pacific Islands.<br>
-        All members undergo verification. Privacy protected with industry-leading encryption.
-    </footer>
+    <script>
+        // Fake live counter
+        let members = 1412;
+        const liveEl = document.getElementById('liveCount');
 
-    <script src="assets/js/main.js"></script>
+        function updateCounter() {
+            const change = Math.floor(Math.random() * 7) - 3; // -3 to +3
+            members = Math.max(1300, members + change);
+            liveEl.textContent = members.toLocaleString();
+        }
+
+        setInterval(updateCounter, 4800 + Math.random() * 2000);
+
+        // Modal logic
+        const modal = document.getElementById('modal');
+
+        function openModal() {
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function goToStep(n) {
+            document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${n}`).classList.add('active');
+        }
+
+        function completeQuiz() {
+            // Here you would normally redirect or show success
+            alert("Welcome to Pacific Connect!\n\n(Replace this alert with your real join link or next step)");
+            closeModal();
+            // Example: window.location = "https://your-real-link.com";
+        }
+
+        document.getElementById('enterBtn').onclick = openModal;
+        document.getElementById('floatingEnterBtn').onclick = openModal;
+
+        // Show floating CTA after scroll
+        const floating = document.getElementById('floatingCta');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                floating.classList.add('visible');
+            } else {
+                floating.classList.remove('visible');
+            }
+        });
+    </script>
+
 </body>
 </html>

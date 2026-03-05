@@ -2,32 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacific Connect | Private Social Network</title>
-    <style>
-        :root { --primary: #ff4b2b; --secondary: #ff416c; --bg: #0f0f0f; }
-        body { background-color: var(--bg); color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-        .container { max-width: 400px; width: 90%; background: #1a1a1a; padding: 40px 20px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { font-size: 28px; margin-bottom: 10px; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p { color: #aaa; font-size: 16px; line-height: 1.5; margin-bottom: 30px; }
-        .live-status { background: rgba(35, 134, 54, 0.2); color: #3fb950; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 20px; border: 1px solid #238636; }
-        .cta-btn { background: linear-gradient(to right, var(--primary), var(--secondary)); color: white; text-decoration: none; padding: 18px 0; width: 100%; display: block; border-radius: 50px; font-weight: bold; font-size: 18px; transition: 0.3s; box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4); }
-        .cta-btn:hover { transform: scale(1.03); opacity: 0.9; }
-        .footer-text { margin-top: 30px; font-size: 11px; color: #555; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pacific Connect • Exclusive Private Social</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="live-status">● 1,402 Members Active in Fiji</div>
-        <h1>Pacific Connect</h1>
-        <p>Join the most exclusive private social network in the islands. Secure, anonymous, and local.</p>
-        
-        <a href="https://yourusername.github.io" class="cta-btn">ENTER PRIVATE PORTAL</a>
 
-        <div class="footer-text">
-            Must be 18+ to enter. By clicking, you agree to our Community Terms. <br>
-            © 2026 Pacific Connect Group.
+    <div class="status-bar">
+        Pacific Connect • Private Fiji Network
+    </div>
+
+    <header class="hero">
+        <div class="logo">Pacific Connect</div>
+        <h1>Exclusive Private<br>Social Discovery</h1>
+        <p>in Fiji & the Pacific Islands</p>
+        
+        <div class="live-counter">
+            <span class="pulse-dot"></span>
+            <span id="live-count">1,400+</span> members online now
+        </div>
+        
+        <a href="#early-access" class="cta-button">
+            Join the Exclusive Network
+        </a>
+        
+        <p class="trust-text">
+            100% Private • Verified Members Only
+        </p>
+    </header>
+
+    <section class="features">
+        <div class="section-title">Why Pacific Connect</div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Absolute Privacy</h3>
+                <p>End-to-end encryption with auto-disappearing messages. Your conversations stay yours.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌴</div>
+                <h3>Authentic Local Connections</h3>
+                <p>Discover real people across Suva, Nadi, outer islands — location-based and community-verified.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant & Reliable Chat</h3>
+                <p>Voice notes, video, live sharing — optimized for island networks, no delays.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-section" id="early-access">
+        <div class="form-container">
+            <h3>Request Early Access</h3>
+            <p>Limited spots for founding members — be among the first in Fiji & the islands.</p>
+            
+            <!-- Replace YOUR_ACCESS_KEY_HERE with your real Web3Forms / Formspree / etc. key -->
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="Pacific Connect Early Access Request">
+                
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+                
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                
+                <label for="phone">Phone / WhatsApp (optional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="+679 ...">
+                
+                <button type="submit" class="cta-button">
+                    Submit Request
+                </button>
+            </form>
+            
+            <p class="form-note">
+                We review and respond within 24 hours
+            </p>
         </div>
     </div>
+
+    <footer class="age-disclaimer">
+        Must be 18+. Pacific Connect is an exclusive, private social platform for adults in Fiji and the Pacific Islands.<br>
+        All members undergo verification. Privacy protected with industry-leading encryption.
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

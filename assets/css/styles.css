@@ -1,0 +1,37 @@
+:root {
+    --bg: #121212;
+    --charcoal: #0f0f0f;
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --accent-start: #ff4b2b;
+    --accent-end: #ff416c;
+    --card-bg: #1a1a1a;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+    max-width: 428px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* ... rest of your CSS from previous version here ... */
+/* (paste the entire <style> content from the last code I gave you, minus the @import which is now in HTML) */
+
+.trust-text, .form-note {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
